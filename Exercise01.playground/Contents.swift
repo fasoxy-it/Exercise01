@@ -49,63 +49,71 @@ printPersons(personsArray: personsArray)
 
 // Exercise 08
 
-func printAgeUnder30Person(listPersonArray: [Person]) -> [Person] {
-    var listPersonArrayUnder30: [Person] = []
-    for element in listPersonArray {
-        if element.age <= 30 {
-            listPersonArrayUnder30.append(element)
+// Exercise 08 (Parte A)
+
+func filterUnder30Persons(personsArray: [Person]) -> [Person] {
+    var under30PersonsArray: [Person] = []
+    for person in personsArray {
+        if person.age <= 30 {
+            under30PersonsArray.append(person)
         }
     }
-    return listPersonArrayUnder30
+    return under30PersonsArray
 }
 
-printAgeUnder30Person(listPersonArray: listPerson)
+filterUnder30Persons(personsArray: personsArray)
 
-func printAgeUnder40Person(listPersonArray: [Person]) -> [Person] {
-    var listPersonArrayUnder40: [Person] = []
-    for element in listPersonArray {
-        if element.age <= 40 {
-            listPersonArrayUnder40.append(element)
+func filterUnder40Persons(personsArray: [Person]) -> [Person] {
+    var under40PersonsArray: [Person] = []
+    for person in personsArray {
+        if person.age <= 40 {
+            under40PersonsArray.append(person)
         }
     }
-    return listPersonArrayUnder40
+    return under40PersonsArray
 }
 
-printAgeUnder40Person(listPersonArray: listPerson)
+filterUnder40Persons(personsArray: personsArray)
 
-func printNicknamePerson(listPersonArray: [Person]) -> [Person] {
-    var listPersonArrayNickname: [Person] = []
-    for element in listPersonArray {
-        if element.nickname != nil {
-            listPersonArrayNickname.append(element)
+func filterNicknamePersons(personsArray: [Person]) -> [Person] {
+    var nicknamePersonsArray: [Person] = []
+    for person in personsArray {
+        if person.nickname != nil {
+            nicknamePersonsArray.append(person)
         }
     }
-    return listPersonArrayNickname
+    return nicknamePersonsArray
 }
 
-printNicknamePerson(listPersonArray: listPerson)
+filterNicknamePersons(personsArray: personsArray)
 
-typealias ArrayInOut = ([Person]) -> [Person]
+// Exercise 08 (Parte B)
 
-func operation(operation: ArrayInOut, listPersonArray: [Person]) -> [Person] {
-    return operation(listPersonArray)
+typealias filterCondition = (Person) -> Bool
+
+func conditionUnder30(person: Person) -> Bool {
+    return person.age<=30
 }
 
-func filter(string: String, listPersonArray: [Person]) -> [Person] {
-    switch string {
-    case "under30":
-        return printAgeUnder30Person(listPersonArray: listPersonArray)
-    case "under40":
-        return printAgeUnder40Person(listPersonArray: listPersonArray)
-    default:
-        return printNicknamePerson(listPersonArray: listPersonArray)
+func conditionUnder40(person: Person) -> Bool {
+    return person.age<=40
+}
+
+func conditionNickname(person: Person) -> Bool {
+    return person.nickname != nil
+}
+
+func filterPersons(condition: filterCondition, personsArray: [Person]) -> [Person] {
+    var filterPersonArray: [Person] = []
+    for person in personsArray where condition(person) {
+        filterPersonArray.append(person)
     }
+    return filterPersonArray
 }
 
-filter(string: "under30", listPersonArray: listPerson)
-filter(string: "under40", listPersonArray: listPerson)
-filter(string: "nickname", listPersonArray: listPerson)
-
+filterPersons(condition: conditionUnder30(person:), personsArray: personsArray)
+filterPersons(condition: conditionUnder40(person:)(person:), personsArray: personsArray)
+filterPersons(condition: conditionNickname(person:)(person:), personsArray: personsArray)
 
 // Exercise 8 (parte c)
 
