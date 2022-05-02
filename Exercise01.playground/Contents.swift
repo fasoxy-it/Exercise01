@@ -105,4 +105,16 @@ filter(string: "nickname", listPersonArray: listPerson)
 
 // Exercise 8 (parte c)
 
+// Exercise 9
+
+var persons: String = ""
+
+for element in listPerson {
+    persons = persons + "\(element.name) \(element.surname) "
+}
+
+print(persons)
+
+print(listPerson.map{$0.name + " " + $0.surname})
+print(listPerson.map{$0.name + " " + $0.surname}.reduce("", {$0 + $1 + " "}))
 
