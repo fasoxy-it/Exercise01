@@ -92,11 +92,11 @@ filterNicknamePersons(personsArray: personsArray)
 typealias filterCondition = (Person) -> Bool
 
 func conditionUnder30(person: Person) -> Bool {
-    return person.age<=30
+    return person.age <= 30
 }
 
 func conditionUnder40(person: Person) -> Bool {
-    return person.age<=40
+    return person.age <= 40
 }
 
 func conditionNickname(person: Person) -> Bool {
@@ -111,22 +111,31 @@ func filterPersons(condition: filterCondition, personsArray: [Person]) -> [Perso
     return filterPersonArray
 }
 
-filterPersons(condition: conditionUnder30(person:), personsArray: personsArray)
-filterPersons(condition: conditionUnder40(person:)(person:), personsArray: personsArray)
-filterPersons(condition: conditionNickname(person:)(person:), personsArray: personsArray)
+filterPersons(condition: conditionUnder30, personsArray: personsArray)
+filterPersons(condition: conditionUnder40, personsArray: personsArray)
+filterPersons(condition: conditionNickname, personsArray: personsArray)
 
-// Exercise 8 (parte c)
+filterPersons(condition: {$0.age <= 30}, personsArray: personsArray)
+filterPersons(condition: {$0.age <= 40}, personsArray: personsArray)
+filterPersons(condition: {$0.nickname != nil}, personsArray: personsArray)
+
+// Exercise 8 (Parte c)
+
+personsArray.filter({$0.age <= 30})
+personsArray.filter({$0.age <= 30})
+personsArray.filter({$0.nickname != nil})
 
 // Exercise 9
 
 var persons: String = ""
 
-for element in listPerson {
+for element in personsArray {
     persons = persons + "\(element.name) \(element.surname) "
 }
 
 print(persons)
 
-print(listPerson.map{$0.name + " " + $0.surname})
-print(listPerson.map{$0.name + " " + $0.surname}.reduce("", {$0 + $1 + " "}))
+// Exercise 10
+
+print(personsArray.map{$0.name + " " + $0.surname}.reduce("", {$0 + $1 + " "}))
 
