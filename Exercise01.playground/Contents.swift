@@ -16,7 +16,7 @@ let person = Person(name: "Mattia", surname: "Fasoli", age: 23)
 
 // Exercise 06
 
-var listPerson = [
+var personsArray = [
     Person(name: "Andrea", surname: "Andrei", age: 20, nickname: "Andre"),
     Person(name: "Bruna", surname: "Bruni", age: 50, nickname: "Brubru"),
     Person(name: "Carlo", surname: "Carli", age: 30),
@@ -25,25 +25,29 @@ var listPerson = [
 
 // Exercise 07
 
-func printPerson(listPersonArray: [Person]) {
-    for element in listPersonArray {
-        if element.nickname == nil {
-            print("\(element.name) \(element.surname) ha \(element.age) anni")
+func printPerson(person: Person) {
+    if person.nickname != nil {
+        print("\(person.name) \(person.surname) ha \(person.age) anni e il suo nickname è \(person.nickname!)")
+    } else {
+        print("\(person.name) \(person.surname) ha \(person.age) anni")
+    }
+}
+
+printPerson(person: personsArray[0])
+
+func printPersons(personsArray: [Person]) {
+    for person in personsArray {
+        if person.nickname != nil {
+            print("\(person.name) \(person.surname) ha \(person.age) anni e il suo nickname è \(person.nickname!)")
         } else {
-            print("\(element.name) \(element.surname) ha \(element.age) anni e il suo nickname è \(element.nickname!)")
+            print("\(person.name) \(person.surname) ha \(person.age) anni")
         }
     }
 }
 
-printPerson(listPersonArray: listPerson)
+printPersons(personsArray: personsArray)
 
 // Exercise 08
-
-func printAll(list: [Person]) {
-    for person in list {
-        print(person)
-    }
-}
 
 func printAgeUnder30Person(listPersonArray: [Person]) -> [Person] {
     var listPersonArrayUnder30: [Person] = []
