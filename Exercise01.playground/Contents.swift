@@ -139,3 +139,11 @@ print(persons)
 
 print(personsArray.map{$0.name + " " + $0.surname}.reduce("", {$0 + $1 + " "}))
 
+// Exercise 11
+
+print(personsArray.map{$0.surname})
+print(personsArray.map{$0.surname}.map{$0.count}.reduce(0, {$0 > $1 ? $0:$1}))
+print(personsArray.map{$0.surname}.reduce("", {$0.count > $1.count ? $0:$1}))
+print(personsArray.map{$0.name + $0.surname}.reduce("", {$0.count > $1.count ? $0:$1}))
+print(personsArray.compactMap{$0.nickname}.map{$0.count}.reduce(0, {$0 + $1}))
+print(personsArray.map{$0.surname}.map{$0.count}.reduce(0.0, {Double($0) + Double($1)})/Double(personsArray.count))
